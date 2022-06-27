@@ -7,26 +7,32 @@ import java.util.List;
 import static java.awt.SystemColor.text;
 
 public class Main {
-
     static final StringBuilder sb = new StringBuilder();
 
 
-    private static File createDir(File name, String path) {
-        if (name.exists()) {
-            sb.append("Директория " + name.getAbsolutePath() + " не создана, т.к уже существует \n");
+    private static File createDir(File path, String name) {
+        if (path.exists()) {
+            sb.append("Директория " + path.getAbsolutePath() + " не создана, т.к уже существует \n");
         } else {
-            if (name.mkdir()) {
-                sb.append("Директория " + name.getAbsolutePath() + " успешно создана \n");
+            if (path.mkdir()) {
+                sb.append("Директория " + path.getAbsolutePath() + " успешно создана \n");
             } else {
-                sb.append("Директория " + name.getAbsolutePath() + " не создана, потому что что-то пошло не так \n");
+                sb.append("Директория " + path.getAbsolutePath() + " не создана, потому что что-то пошло не так \n");
             }
         }
-        return new File(path);
+        return new File(name);
+    }
+//todo доделать метод создания нового файла, проверку на существование
+    private static File createFile(File path, String name) {
+        return null;
     }
 
     public static void main(String[] args) throws IOException {
 
-        createDir(new File("F://Games"),"src");
+        createDir(new File("F://Games/src"),"src");
+        createDir(new File("F://Games/test"),"test");
+        createDir(new File("F://Games/res"),"res");
+        createDir(new File("F://Games/savegames"),"savegames");
 
 
             File srcF1 = new File("F://Games/src/main/Main.java");
@@ -53,26 +59,26 @@ public class Main {
                 System.out.println(e.getMessage());
             }
 
-            File srcDir2 = new File("F://Games/src/test");
-            if (srcDir2.mkdir()) {
-                sb.append("Директория " + srcDir2.getAbsolutePath() + " создана \n");
-            } else {
-                sb.append("Директория " + srcDir2.getAbsolutePath() + " не создана, т.к уже существует \n");
-            }
-
-
-            File dir2 = new File("F://Games/res");
-            if (dir2.mkdir()) {
-                sb.append("Директория " + dir2.getAbsolutePath() + " создана \n");
-            } else {
-                sb.append("Директория " + dir2.getAbsolutePath() + " не создана, т.к уже существует \n");
-            }
-            File dir3 = new File("F://Games/savegames");
-            if (dir3.mkdir()) {
-                sb.append("Директория " + dir3.getAbsolutePath() + " создана \n");
-            } else {
-                sb.append("Директория " + dir3.getAbsolutePath() + " не создана, т.к уже существует \n");
-            }
+//            File srcDir2 = new File("F://Games/src/test");
+//            if (srcDir2.mkdir()) {
+//                sb.append("Директория " + srcDir2.getAbsolutePath() + " создана \n");
+//            } else {
+//                sb.append("Директория " + srcDir2.getAbsolutePath() + " не создана, т.к уже существует \n");
+//            }
+//
+//
+//            File dir2 = new File("F://Games/res");
+//            if (dir2.mkdir()) {
+//                sb.append("Директория " + dir2.getAbsolutePath() + " создана \n");
+//            } else {
+//                sb.append("Директория " + dir2.getAbsolutePath() + " не создана, т.к уже существует \n");
+//            }
+//            File dir3 = new File("F://Games/savegames");
+//            if (dir3.mkdir()) {
+//                sb.append("Директория " + dir3.getAbsolutePath() + " создана \n");
+//            } else {
+//                sb.append("Директория " + dir3.getAbsolutePath() + " не создана, т.к уже существует \n");
+//            }
 
             File dir4 = new File("F://Games/temp");
             if (dir4.mkdir()) {
