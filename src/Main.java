@@ -1,7 +1,9 @@
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class Main {
     static final StringBuilder sb = new StringBuilder();
@@ -19,7 +21,7 @@ public class Main {
         return new File(String.valueOf(path));
     }
 
-    //todo доделать метод создания нового файла в директории, проверку на существование
+    // метод создания нового файла в директории, проверка на существование
     private static File createFile(File path) {
         if (path.exists()) {
             sb.append("Файл ").append(path.getAbsolutePath()).append(" не создан, т.к уже существует \n");
@@ -74,6 +76,5 @@ public class Main {
         } finally {
             if (writer != null) writer.close();
         }
-
     }
 }
