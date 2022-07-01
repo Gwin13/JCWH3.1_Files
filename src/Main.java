@@ -67,7 +67,7 @@ public class Main {
 
 
         //записываем лог
-        File temp = new File("F://Games/temp/temp.txt");
+        File temp = new File("F://Games//temp//temp.txt");
         BufferedWriter writer = null;
         try {
             writer = new BufferedWriter(new FileWriter(temp));
