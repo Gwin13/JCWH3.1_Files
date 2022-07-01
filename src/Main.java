@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Main {
     static final StringBuilder sb = new StringBuilder();
@@ -37,7 +38,7 @@ public class Main {
     }
 
 
-    //TODO ОСНОВНОЙ МЕТОД MAIN
+    // ОСНОВНОЙ МЕТОД MAIN
     public static void main(String[] args) throws IOException {
 
         List<File> dirs = Arrays.asList(
@@ -58,11 +59,12 @@ public class Main {
                 new File("F://Games//temp//temp.txt")
         );
 
-        //todo пробежать потоком по списку ссылок
+        //пробежать потоком по списку ссылок
+        dirs.forEach(Main::createDir);
+        files.forEach(Main::createFile);
 
 
-
-
+        //записываем лог
         File temp = new File("F://Games/temp/temp.txt");
         BufferedWriter writer = null;
         try {
