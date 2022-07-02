@@ -60,7 +60,7 @@ public class Main {
         List<File> files = Arrays.asList(
                 new File(f + SEPARATOR + "src" + SEPARATOR +"main" + SEPARATOR + "Main.java"),
                 new File(f + SEPARATOR + "src" + SEPARATOR +"main" + SEPARATOR + "Utils.java"),
-                new File(f + SEPARATOR + "temp" + "temp.txt")
+                new File(f + SEPARATOR + "temp" + SEPARATOR + "temp.txt")
         );
 
         //пробежать потоком по списку ссылок
@@ -69,7 +69,7 @@ public class Main {
 
 
         //записываем лог
-        File temp = new File(f + "temp//temp.txt");
+        File temp = new File(f + SEPARATOR + "temp" + SEPARATOR + "temp.txt");
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(temp))) {
             writer.append(sb);
             writer.flush();
