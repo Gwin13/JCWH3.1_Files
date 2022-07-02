@@ -6,9 +6,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Main {
+    static final String SEPARATOR = File.separator;
     static final StringBuilder sb = new StringBuilder();
 
-    private static File createDir(File path) {
+    private static void createDir(File path) {
         if (path.exists()) {
             sb.append("Директория ").append(path.getAbsolutePath()).append(" не создана, т.к уже существует \n");
         } else {
@@ -18,11 +19,11 @@ public class Main {
                 sb.append("Директория ").append(path.getAbsolutePath()).append(" не создана, потому что что-то пошло не так \n");
             }
         }
-        return new File(String.valueOf(path));
+        new File(String.valueOf(path));
     }
 
     // метод создания нового файла в директории, проверка на существование
-    private static File createFile(File path) {
+    private static void createFile(File path) {
         if (path.exists()) {
             sb.append("Файл ").append(path.getAbsolutePath()).append(" не создан, т.к уже существует \n");
         } else {
@@ -36,29 +37,30 @@ public class Main {
                 System.out.println(e.getMessage());
             }
         }
-        return new File(String.valueOf(path));
+        new File(String.valueOf(path));
     }
 
 
     // ОСНОВНОЙ МЕТОД MAIN
     public static void main(String[] args) throws IOException {
+        String f = "F:" + SEPARATOR +"Games" + SEPARATOR;
 
         List<File> dirs = Arrays.asList(
-                new File("F://Games//src"),
-                new File("F://Games//temp"),
-                new File("F://Games//res"),
-                new File("F://Games//savegames"),
-                new File("F://Games//src/main"),
-                new File("F://Games//src//test"),
-                new File("F://Games//res//drawables"),
-                new File("F://Games//res//vectors"),
-                new File("F://Games//res//icons")
+                new File(f + SEPARATOR + "src"),
+                new File(f + SEPARATOR + "temp"),
+                new File(f + SEPARATOR + "res"),
+                new File(f + SEPARATOR + "savegames"),
+                new File(f + SEPARATOR + "src" + SEPARATOR +"main"),
+                new File(f + SEPARATOR + "src" + SEPARATOR + "test"),
+                new File(f + SEPARATOR + "res" + SEPARATOR + "drawables"),
+                new File(f + SEPARATOR + "res" + SEPARATOR + "vectors"),
+                new File(f + SEPARATOR + "res" + SEPARATOR + "icons")
         );
 
         List<File> files = Arrays.asList(
-                new File("F://Games//src//main//Main.java"),
-                new File("F://Games//src//main//Utils.java"),
-                new File("F://Games//temp//temp.txt")
+                new File(f + SEPARATOR + "src" + SEPARATOR +"main" + SEPARATOR + "Main.java"),
+                new File(f + SEPARATOR + "src" + SEPARATOR +"main" + SEPARATOR + "Utils.java"),
+                new File(f + SEPARATOR + "temp" + "temp.txt")
         );
 
         //пробежать потоком по списку ссылок
@@ -67,14 +69,10 @@ public class Main {
 
 
         //записываем лог
-        File temp = new File("F://Games//temp//temp.txt");
-        BufferedWriter writer = null;
-        try {
-            writer = new BufferedWriter(new FileWriter(temp));
+        File temp = new File(f + "temp//temp.txt");
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(temp))) {
             writer.append(sb);
             writer.flush();
-        } finally {
-            if (writer != null) writer.close();
         }
     }
 }
